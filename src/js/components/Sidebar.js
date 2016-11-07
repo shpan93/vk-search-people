@@ -1,20 +1,21 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import {AddTask,CurrentSelection,SearchWidget} from './index';
-const Sidebar  = (props) => (
-            <aside className="sidebar ">
-                <CurrentSelection></CurrentSelection>
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+//import { AddTask, CurrentSelection, SearchWidget } from './index';
+import SelectedSongs from '../components/widgets/SelectedSongs/SelectedSongs'
+const Sidebar = (props) => (
+  <aside className="sidebar ">
+    <div className="selection">
+      Текущие фильтры:
+      <ul>
+        <li></li>
+      </ul>
+    </div>
 
-                {
-                    (props.isNewTaskWidgetOpened && (props.today.date.isBefore(props.selectedDay.date) || props.today.YMD === props.selectedDay.YMD) ) && (
+    <SelectedSongs>
 
-                        <AddTask></AddTask>
-                    )
-                }
-                <SearchWidget></SearchWidget>
+    </SelectedSongs>
 
-
-            </aside>
+  </aside>
 );
 
 export default connect(state => state.data)(Sidebar);

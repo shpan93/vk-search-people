@@ -1,0 +1,22 @@
+main, #app {
+  height: 100%;
+}
+
+.root {
+  display: flex;
+  justify-content: space-between;
+  height: 100%;
+  align-content: stretch;
+  aside {
+    width: 25%;
+    min-width: 300px;
+    box-sizing: border-box;
+    padding: 0 15px 15px;
+
+  }
+
+  .view {
+    width: 75%;
+  }
+}
+

@@ -1,14 +1,16 @@
 ﻿import React, {Component} from 'react';
-import Header from '../components/Header'
+import Header from '../components/Header/Header';
+import Sidebar from '../components/Sidebar';
 export default class Root extends Component {
     render() {
         return (
             <div className="root">
-                <Header></Header>
+
                 <div className="view  ">
+                  <Header></Header>
                     {this.props.children}
                 </div>
-                <div>sidebar</div>
+              <Sidebar></Sidebar>
             </div>
         );
     }

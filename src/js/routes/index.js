@@ -1,12 +1,12 @@
 import React from 'react';
 import {Route, IndexRoute} from 'react-router';
-import {Root} from '../pages';
+import {Root,UserList} from '../pages';
 
 export default(
 
         <Route name="Root" path='/' component={Root}>
-            {/*<IndexRoute name="MonthView"   component={MonthView}/>*/}
-            <Route path="*" component={(props)=>(<div>No match <span>2233222 {props.location.pathName}</span></div>)} />
+            <IndexRoute name="MonthView"   component={UserList}/>
+            <Route path="*" component={(props)=>(<div>No match</div>)} />
         </Route>
 
 );

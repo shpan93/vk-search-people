@@ -1,6 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const OpenBrowserPlugin = require('open-browser-webpack-plugin');
+const autoprefixer = require('autoprefixer');
 
 module.exports = {
   devtool: 'source-map',
@@ -11,13 +12,14 @@ module.exports = {
   ],
 
   output: {
-    path: path.join(__dirname, './'),
+    path: path.join(__dirname, 'dist'),
     filename: 'bundle.js',
-    publicPath: '/'
+    publicPath: '/assets/js',
   },
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new OpenBrowserPlugin({ url: 'http://localhost:8080' })
   ],
 
   module: {
@@ -26,11 +28,14 @@ module.exports = {
         test: /\.js$/,
         loaders: ['react-hot', 'babel'],
         include: path.join(__dirname, 'src'),
-        // query: {
-        //   presets: ['es2015']
-        // }
       },
-      {test: /(\.css|\.scss)$/, loaders: ['style', 'css?sourceMap', 'postcss', 'sass?sourceMap']},
+      {
+        test: /(\.css|\.scss)$/,
+        include: path.join(__dirname, 'src'),
+        loaders: ['style', 'css?sourceMap', 'postcss', 'sass?sourceMap']
+      },
     ]
   },
+  postcss: [autoprefixer({ browsers: ['last 50 versions'] })]
+
 };
