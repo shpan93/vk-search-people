@@ -1,0 +1,26 @@
+
+$mdl-blue: #2196F3;
+$mdl-alt-blue: #448AFF;
+$mdl-light-blue: #64B5F6;
+$mdl-accent-blue: #BBDEFB;
+$mdl-amber: #FFC107;
+$mdl-alt-amber: #FFAB00;
+$mdl-light-amber: #FFECB3;
+$mdl-teal: #1DE9B6;
+$mdl-pink: #E91E63;
+
+$task: #8479FF;
+$task-help: #FF5400;
+$occasion: #FFC926;
+$task-scheduled: #70C3FC;
+html, body {
+    //height: 100%;
+    font-family: "Roboto","Helvetica","Arial",sans-serif;
+    font-size:14px;
+}
+body{
+    height:100%;
+ //   background: url("/assets/images/bg.jpg")  0 0 no-repeat;
+   // background: grey;
+    background-size:cover;
+}
