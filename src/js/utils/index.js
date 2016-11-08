@@ -1,12 +1,19 @@
 /* global VK */
 class ApiClient {
-  getSongsByOwnerId(owner_id, count = 0) {
+  getSongsByOwnerId(owner_id, count = 0, captcha_sid, captcha_key) {
     return new Promise((resolve, reject)=> {
       //VK.Api.call('audio.get', {owner_id:17653538, count:999} , r => console.log(r))
-      VK.Api.call('audio.get', { owner_id, count }, r => {
-        if (r.error_msg) {
-          reject(r);
-        }else{
+      VK.Api.call('audio.get', { owner_id, count, captcha_sid, captcha_key }, r => {
+        if (r.error) {
+
+          // const {captcha_img,error_msg,captcha_sid} = r.error;
+          // window.open(captcha_img, false, "width=200,height=100");;
+          // const captcha_key = prompt('Please, enter captcha ' + error_msg);
+          // this.getSongsByOwnerId(owner_id, 0, captcha_sid, captcha_key).then(()=> {
+          //   resolve(r.response)
+          // });
+          //
+        } else {
           resolve(r.response);
         }
 
@@ -50,7 +57,7 @@ class ApiClient {
             this.getSongsByOwnerId(user.uid).then((songs)=> {
               console.log(new Date());
               user.songs = songs;
-              const matchedSongs = filterBySongs(songs, [{ artist: 'Vivienne Mort' }])
+              const matchedSongs = filterBySongs(songs, [{ artist: 'Иван Дорн' }])
               console.log(`User ${user.uid} - ${matchedSongs}`);
               if (matchedSongs.length > 0) {
                 user.matchedSongs = matchedSongs;
@@ -64,16 +71,19 @@ class ApiClient {
       });
 
       let i = 0;
+
       function recursive(i) {
-        if(i !== promises.length -1){
-          promises[i]().then(recursive.bind(null,i+1));
+        if (i !== promises.length - 1) {
+          promises[i]().then(recursive.bind(null, i + 1));
           i++;
-        }else{
+        } else {
           promises[i]().then(() => {
             resolve(validUsers)
           })
-        };
+        }
+        ;
       }
+
       recursive(i);
 
 
@@ -100,7 +110,7 @@ class ApiClient {
         const users = r.response.filter(user=>user.can_see_audio && user.has_photo);
 
 
-        this.getUsersSongs(users).then((result)=>{
+        this.getUsersSongs(users).then((result)=> {
           resolve(result);
         });
       },);

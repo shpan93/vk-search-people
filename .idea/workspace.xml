@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="c72c55e6-9709-4669-a552-1100a154e4a1" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/pages/UserList/UserList.js" afterPath="$PROJECT_DIR$/src/js/pages/UserList/UserList.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/js/utils/index.js" afterPath="$PROJECT_DIR$/src/js/utils/index.js" />
     </list>
     <ignored path="vk-search-people.iws" />
@@ -116,8 +114,8 @@
       <file leaf-file-name="index.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/js/utils/index.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="4" column="80" selection-start-line="4" selection-start-column="80" selection-end-line="4" selection-end-column="80" />
+            <state relative-caret-position="119">
+              <caret line="59" column="77" selection-start-line="59" selection-start-column="77" selection-end-line="59" selection-end-column="77" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -677,12 +675,12 @@
       <option name="presentableId" value="Default" />
       <updated>1478511734939</updated>
       <workItem from="1478511736421" duration="151000" />
-      <workItem from="1478511951773" duration="36127000" />
+      <workItem from="1478511951773" duration="37791000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="36278000" />
+    <option name="totallyTimeSpent" value="37942000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1176" extended-state="6" />
@@ -1089,8 +1087,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/js/utils/index.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="80" selection-start-line="4" selection-start-column="80" selection-end-line="4" selection-end-column="80" />
+        <state relative-caret-position="119">
+          <caret line="59" column="77" selection-start-line="59" selection-start-column="77" selection-end-line="59" selection-end-column="77" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
