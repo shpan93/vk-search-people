@@ -1,5 +1,9 @@
 /* global VK */
 class ApiClient {
+  constructor(dispatch){
+    super();
+    this.dispatch = dispatch;
+  }
   getSongsByOwnerId(owner_id, count = 0, captcha_sid, captcha_key) {
     return new Promise((resolve, reject)=> {
       //VK.Api.call('audio.get', {owner_id:17653538, count:999} , r => console.log(r))
