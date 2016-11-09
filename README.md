@@ -1,3 +1,13 @@
+### TODO
+#####high priority
+* add filter widget => pass to vk call 
+* add song search (select field artist || title)
+* add captcha callback
+* add visual progress
+#####low priority
+* Add user page
+
+
 ### Installation
 ````
 1. git clone https://github.com/shpan93/event-calendar.git
