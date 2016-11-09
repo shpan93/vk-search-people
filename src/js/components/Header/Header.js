@@ -11,10 +11,13 @@ import { addSong } from '../../redux/modules/selection';
 import { getPeople } from '../../redux/modules/data';
 
 
-const client = new ApiClient();
+let client;
 
 @connect(state => state,
-  dispatch=> bindActionCreators({ addSong,getPeople }, dispatch)
+  dispatch=> {
+    client = new ApiClient(dispatch);
+    return bindActionCreators({ addSong,getPeople }, dispatch);
+  }
 )
 export default class Header extends React.Component {
 

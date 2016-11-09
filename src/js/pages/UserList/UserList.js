@@ -14,7 +14,7 @@ export default class UserList extends React.Component {
       if(typeof user !== 'object') return;
       return <div key={i}>
         <div className="img-wr">
-          <img src={user.photo_200} alt="" />
+          <img src={user.photo_200 || user.photo} alt="" />
         </div>
         <p>
           {user.first_name} <br />
