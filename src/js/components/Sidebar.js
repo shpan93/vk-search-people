@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-//import { AddTask, CurrentSelection, SearchWidget } from './index';
+
+
 import SelectedSongs from '../components/widgets/SelectedSongs/SelectedSongs'
+import Dialog from '../components/widgets/Dialog/Dialog'
+
 const Sidebar = (props) => (
   <aside className="sidebar ">
     <div className="selection">
@@ -14,6 +17,10 @@ const Sidebar = (props) => (
     <SelectedSongs>
 
     </SelectedSongs>
+    <Dialog>
+
+    </Dialog>
+
 
   </aside>
 );

@@ -6,20 +6,20 @@ const autoprefixer = require('autoprefixer');
 module.exports = {
   devtool: 'source-map',
   entry: [
-    'webpack-dev-server/client?http://localhost:8080',
+    'webpack-dev-server/client?http://localhost:9090',
     'webpack/hot/only-dev-server',
     './src/js/index',
   ],
 
   output: {
-    path: path.join(__dirname, 'dist'),
+    path: path.join(__dirname, 'public'),
     filename: 'bundle.js',
     publicPath: '/assets/js',
   },
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new OpenBrowserPlugin({ url: 'http://localhost:8080' })
+    new OpenBrowserPlugin({ url: 'http://dev.io:9090' })
   ],
 
   module: {

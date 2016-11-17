@@ -19,7 +19,7 @@
 ````
 npm run dev
 ````
-Then visit `localhost:8080` in your browser
+Then visit `localhost:9090` in your browser
 ##production
 ````
 npm run build

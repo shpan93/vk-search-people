@@ -3,11 +3,11 @@ const WebpackDevServer = require('webpack-dev-server');
 const config = require('./webpack.config');
 
 new WebpackDevServer(webpack(config), {
-  contentBase: 'dist',
+  contentBase: 'public',
   publicPath: config.output.publicPath,
   hot:true,
   historyApiFallback: true
-}).listen(8080, 'localhost', function (err, result) {
+}).listen(9090, 'localhost', function (err, result) {
   if (err) { return console.log(err); }
-  console.log('Listening at http://localhost:8080/');
+  console.log('Listening at http://localhost:9090/');
 });

@@ -2,7 +2,7 @@ const ADD_SONG = 'selection/ADD_SONG';
 const REMOVE_SONG = 'selection/REMOVE_SONG';
 
 const initialState = {
-    songs:[{ artist: 'Иван Дорн' }],
+    songs:[{ artist: 'vivienne mort' }],
 };
 
 export default function reducer(state = initialState  , action) {
@@ -14,8 +14,8 @@ export default function reducer(state = initialState  , action) {
                 songs:[...state.songs, payload],
             };
         case REMOVE_SONG:
-            const id = state.songs.indexOf(payload);
-            const songs = [...state.songs].splice(id,1);
+            //const id = state.songs.indexOf(payload);
+            const songs = state.songs.filter((song,id) => id !== payload)
             return {
                 ...state,
                 songs

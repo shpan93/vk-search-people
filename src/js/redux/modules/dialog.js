@@ -1,38 +1,46 @@
 const TOGGLE = 'dialog/TOGGLE';
-const SUBMIT_DIALOG = 'dialog/SUBMIT_DIALOG';
+//const SUBMIT_DIALOG = 'dialog/SUBMIT_DIALOG';
 
 const initialState = {
-    songs:[],
+    visible:false,
+    captcha_img:'',
+    error_msg:'',
+    resolve:()=>{}
 };
 
 export default function reducer(state = initialState  , action) {
     const {type, payload} = action;
     switch (type) {
-        case ADD_SONG:
+        case TOGGLE:
+            const {captcha_img,error_msg, resolve} = action;
             return {
                 ...state,
-                songs:[...state.songs, payload],
-            };
-        case REMOVE_SONG:
-            const id = state.songs.indexOf(payload);
-            const songs = [...state.songs].splice(id,1);
-            return {
-                ...state,
-                songs
+                visible:action.visible,
+                captcha_img,error_msg, resolve
             };
         default:
             return state;
     }
 }
-export function addSong(payload){
+export function showDialog(captcha_img,error_msg, resolve){
     return {
-        type:ADD_SONG,
-        payload,
+        type:TOGGLE,
+        visible:true,
+        captcha_img,
+        error_msg,
+        resolve
     }
 }
-export function removeSong(payload){
+export function hideDialog(){
     return {
-        type:REMOVE_SONG,
-        payload,
+        type:TOGGLE,
+        visible:false,
+    }
+}
+export function submitCaptcha(payload){
+    return (dispatch, getState)=>{
+        const resolve = getState().dialog.resolve;
+        resolve(payload);
+        dispatch(hideDialog());
     }
 }

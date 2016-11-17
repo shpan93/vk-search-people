@@ -2,6 +2,9 @@ import React from 'react';
 import debounce from 'lodash.debounce'
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
+import SelectField from 'material-ui/SelectField';
+import MenuItem from 'material-ui/MenuItem';
+
 import ApiClient from '../../utils/index';
 import './_header.scss';
 
@@ -26,6 +29,7 @@ export default class Header extends React.Component {
     this.state = {
       dataSource: [],
       value:'',
+      songField:'artist'
     };
     // this.debouncedGetSongs = debounce((value) => {
     //   client.getSongs(value).then(data => {
@@ -50,17 +54,30 @@ export default class Header extends React.Component {
   handleSubmit(e) {
     e && e.preventDefault();
     //this.debouncedGetSongs(value);
-    this.props.addSong({
-      title:this.state.value,
-    });
-    this.setState({
-      value:'',
-    });
+    if(!!this.state.value.length){
+      this.props.addSong({
+        [this.state.songField]:this.state.value,
+      });
+      this.setState({
+        value:'',
+        valueError:''
+      });
+    }else{
+      this.setState({
+        valueError:'Введите больше одного символа',
+      });
+    }
+
 
   }
   handleSearchChange(e){
     this.setState({
       value:e.target.value,
+    });
+  }
+  handleSongFieldChange(event, index, value){
+    this.setState({
+      songField:value,
     });
   }
   render() {
@@ -74,7 +91,17 @@ export default class Header extends React.Component {
                        onChange={::this.handleSearchChange}
                        placeholder="Введите название трека" autoComplete="off"
               value={this.state.value}
+                       className="search-field"
+                       errorText={this.state.valueError}
             />
+            <SelectField
+              value={this.state.songField}
+              onChange={::this.handleSongFieldChange}
+              className="select-field"
+            >
+              <MenuItem value={'artist'} primaryText="Исполнитель" />
+              <MenuItem value={'title'} primaryText="Песня" />
+            </SelectField>
           </div>
           <div className="button item">
             <RaisedButton
