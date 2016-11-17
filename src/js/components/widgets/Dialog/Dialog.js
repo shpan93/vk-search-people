@@ -20,6 +20,10 @@ class DialogComponent extends React.Component {
   handleSubmit(e) {
     e && e.preventDefault();
     if (this.state.value.length > 0) {
+      this.setState({
+        valueError: '',
+        value:''
+      });
       this.props.submitCaptcha(this.state.value);
     } else {
       this.setState({
