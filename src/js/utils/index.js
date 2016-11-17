@@ -1,7 +1,8 @@
 /* global VK */
+import {addUser} from '../redux/modules/data';
+
 class ApiClient {
   constructor(dispatch){
-    super();
     this.dispatch = dispatch;
   }
   getSongsByOwnerId(owner_id, count = 0, captcha_sid, captcha_key) {
@@ -51,7 +52,7 @@ class ApiClient {
     });
   }
 
-  getUsersSongs(users) {
+  getUsersSongs(users, selectedSongs) {
     return new Promise((resolve, reject) => {
       const validUsers = [];
       const promises = users.map((user, i)=> {
@@ -61,11 +62,12 @@ class ApiClient {
             this.getSongsByOwnerId(user.uid).then((songs)=> {
               console.log(new Date());
               user.songs = songs;
-              const matchedSongs = filterBySongs(songs, [{ artist: 'Иван Дорн' }])
+              const matchedSongs = filterBySongs(songs, selectedSongs)
               console.log(`User ${user.uid} - ${matchedSongs}`);
               if (matchedSongs.length > 0) {
                 user.matchedSongs = matchedSongs;
                 validUsers.push(user);
+                this.dispatch(addUser(user));
               }
               //next && next();
             });
@@ -78,14 +80,9 @@ class ApiClient {
 
       function recursive(i) {
         if (i !== promises.length - 1) {
-          promises[i]().then(recursive.bind(null, i + 1));
+          promises[i]().then(recursive.bind(null, i + 1)).catch(e => {throw new Error(e)});
           i++;
-        } else {
-          promises[i]().then(() => {
-            resolve(validUsers)
-          })
-        }
-        ;
+        };
       }
 
       recursive(i);
@@ -113,10 +110,11 @@ class ApiClient {
 
         const users = r.response.filter(user=>user.can_see_audio && user.has_photo);
 
+        resolve(users);
 
-        this.getUsersSongs(users).then((result)=> {
-          resolve(result);
-        });
+        // this.getUsersSongs(users).then((result)=> {
+        //   resolve(result);
+        // });
       },);
     });
     //VK.Api.call('users.search', {sex:1, school_city:455, city:314,count:20} , r => console.log(r))

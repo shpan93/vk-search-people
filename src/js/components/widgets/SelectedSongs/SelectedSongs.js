@@ -16,7 +16,7 @@ export default class SelectedSongs extends React.Component {
     return (
       <Widget title="SelectedSongs ">
         <ul>
-          {this.props.songs.length > 0 && this.props.songs.map((song, i)=> <li key={i}>{song}</li>)}
+          {this.props.songs.length > 0 && this.props.songs.map((song, i)=> <li key={i}>{song.title || song.artist}</li>)}
         </ul>
       </Widget>
     );

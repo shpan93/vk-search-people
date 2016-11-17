@@ -26,15 +26,22 @@ export default class Header extends React.Component {
     this.state = {
       dataSource: [],
       value:'',
-    }
-    this.debouncedGetSongs = debounce((value) => {
-      client.getSongs(value).then(data => {
-        this.setState({
-          dataSource: data.map(song => `${song.artist} ${song.title}`),
-        });
-      });
-    }, 500);
+    };
+    // this.debouncedGetSongs = debounce((value) => {
+    //   client.getSongs(value).then(data => {
+    //     this.setState({
+    //       dataSource: data.map(song => `${song.artist} ${song.title}`),
+    //     });
+    //   });
+    // }, 500);
   }
+
+  getPeople(){
+    client.getUsers().then(people => {
+      client.getUsersSongs(people, this.props.selection.songs);
+    });
+  }
+
 
   login() {
     client.login();
@@ -43,7 +50,9 @@ export default class Header extends React.Component {
   handleSubmit(e) {
     e && e.preventDefault();
     //this.debouncedGetSongs(value);
-    this.props.addSong(this.state.value);
+    this.props.addSong({
+      title:this.state.value,
+    });
     this.setState({
       value:'',
     });
@@ -71,7 +80,7 @@ export default class Header extends React.Component {
             <RaisedButton
               secondary={true}
               label="Поиск"
-              onClick={::this.props.getPeople}
+              onClick={::this.getPeople}
             />
             <RaisedButton
               primary={true}

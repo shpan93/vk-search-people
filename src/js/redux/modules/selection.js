@@ -2,7 +2,7 @@ const ADD_SONG = 'selection/ADD_SONG';
 const REMOVE_SONG = 'selection/REMOVE_SONG';
 
 const initialState = {
-    songs:[],
+    songs:[{ artist: 'Иван Дорн' }],
 };
 
 export default function reducer(state = initialState  , action) {

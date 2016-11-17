@@ -1,7 +1,7 @@
 import ApiClient from '../../utils/index';
 
-const client = new ApiClient();
-const ADD_PEOPLE = 'data/ADD_PEOPLE';
+//const client = new ApiClient();
+const ADD_USER = 'data/ADD_USER';
 
 const initialState = {
     users:[],
@@ -12,18 +12,18 @@ const initialState = {
 export default function reducer(state = initialState  , action) {
     const {type, payload} = action;
     switch (type) {
-        case ADD_PEOPLE:
+        case ADD_USER:
             return {
                 ...state,
-                users: payload,
+                users: [...state.users,payload],
             }
         default:
             return state;
     }
 }
-export function addPeople(payload) {
+export function addUser(payload) {
     return {
-        type:ADD_PEOPLE,
+        type:ADD_USER,
         payload,
     }
 }
@@ -34,8 +34,11 @@ export function filterUsers(users, songs) {
 }
 export function getPeople(filters) {
     return (dispatch, getState) => {
-        client.getUsers(filters).then((users)=>{
-            dispatch(addPeople(users))
-        });
+        client.getUsers(filters);
+    }
+}
+export function getUsersSongs(users, songs) {
+    return (dispatch, getState) => {
+        client.getUsersSongs(users, songs);
     }
 }
