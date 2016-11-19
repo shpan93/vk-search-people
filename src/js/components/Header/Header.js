@@ -42,7 +42,9 @@ export default class Header extends React.Component {
     });
   }
 
-
+  componentDidMount(){
+    client.getCountries()
+  }
   login() {
     client.login();
   }

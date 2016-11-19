@@ -119,6 +119,25 @@ class ApiClient {
     });
     //VK.Api.call('users.search', {sex:1, school_city:455, city:314,count:20} , r => console.log(r))
   }
+
+
+  getCountries(need_all=1) {
+    return new Promise((resolve, reject)=> {
+      VK.Api.call('database.getCountries', { need_all}, r => {
+            if (r.error) {
+              reject(r.error);
+            } else {
+              console.log(r, r.response, response)
+              resolve(r.response);
+            }
+          }
+
+        );
+    });
+    //VK.Api.call('users.search',
+    // {sex:1, school_city:455, city:314,count:20} , r => console.log(r))
+  }
+
 }
 
 export function filterBySongs(userSongs, selectedSongs) {
