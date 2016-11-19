@@ -11,7 +11,7 @@ module.exports = {
     fs: "empty"
   },
   output: {
-    path: path.join(__dirname, 'assets/js/'),
+    path: path.join(__dirname, 'public'),
     filename: 'bundle.js',
     publicPath: '/assets/js/'
   },
@@ -34,7 +34,12 @@ module.exports = {
         test: /\.js$/,
         loaders: ['babel'],
         include: path.join(__dirname, 'src')
-      }
+      },
+      {
+        test: /(\.css|\.scss)$/,
+        include: path.join(__dirname, 'src'),
+        loaders: ['style', 'css?sourceMap', 'postcss', 'sass']
+      },
     ]
   }
 };

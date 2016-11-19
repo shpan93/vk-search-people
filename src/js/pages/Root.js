@@ -1,6 +1,8 @@
 ﻿import React, {Component} from 'react';
 import Header from '../components/Header/Header';
 import Sidebar from '../components/Sidebar';
+
+
 export default class Root extends Component {
     render() {
         return (
@@ -11,6 +13,7 @@ export default class Root extends Component {
                     {this.props.children}
                 </div>
               <Sidebar></Sidebar>
+
             </div>
         );
     }

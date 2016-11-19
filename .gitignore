@@ -222,3 +222,4 @@ pip-log.txt
 
 .sass-cache/
 app/.vs/
+.idea/

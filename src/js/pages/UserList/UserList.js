@@ -13,6 +13,7 @@ export default class UserList extends React.Component {
     return this.props.users.map((user, i) => {
       if(typeof user !== 'object') return;
       return <div key={i}>
+        <a target="_blank" href={`https://vk.com/${user.domain}`}>
         <div className="img-wr">
           <img src={user.photo_200 || user.photo} alt="" />
         </div>
@@ -20,6 +21,7 @@ export default class UserList extends React.Component {
           {user.first_name} <br />
           {user.last_name}
         </p>
+        </a>
       </div>
     });
   }

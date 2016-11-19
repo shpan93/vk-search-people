@@ -5,7 +5,15 @@
     box-sizing: border-box;
   }
   .search {
+
     flex: 3;
+    display: flex;
+    .search-field{
+      flex:3;
+    }
+    .select-field{
+      flex:1;
+    }
   }
   .login {
     flex: 1;
