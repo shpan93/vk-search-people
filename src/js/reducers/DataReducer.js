@@ -22,6 +22,13 @@ export default function dataReducer(state = INITIAL_STATE, action) {
                 ...state,
                 isNewTaskWidgetOpened: payload
             };
+        case types.RECEIVE_CITY:
+            console.log(payload)
+
+            return {
+                ...state,
+                city: payload
+            };
         case types.SET_SELECTED:
 
 

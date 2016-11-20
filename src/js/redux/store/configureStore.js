@@ -3,6 +3,11 @@ import thunk from 'redux-thunk';
 import {routerReducer, routerMiddleware, syncHistoryWithStore} from 'react-router-redux';
 import reducer from '../modules';
 import createLogger from 'redux-logger';
+import {combineReducers} from 'redux';
+//import {DataReducer} from '../reducers';
+
+
+
 
 export default function configureStore(baseHistory, initialState = {}) {
     const routingMiddleware = routerMiddleware(baseHistory);

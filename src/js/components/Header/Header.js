@@ -1,4 +1,5 @@
 import React from 'react';
+
 import debounce from 'lodash.debounce'
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
@@ -12,14 +13,14 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import { addSong } from '../../redux/modules/selection';
 import { getPeople } from '../../redux/modules/data';
-
+import { getCities } from '../../redux/modules/data';
 
 let client;
 
 @connect(state => state,
   dispatch=> {
     client = new ApiClient(dispatch);
-    return bindActionCreators({ addSong,getPeople }, dispatch);
+    return bindActionCreators({ addSong, getPeople, getCities }, dispatch);
   }
 )
 export default class Header extends React.Component {
@@ -29,7 +30,8 @@ export default class Header extends React.Component {
     this.state = {
       dataSource: [],
       value:'',
-      songField:'artist'
+      songField:'artist',
+      city: []
     };
     // this.debouncedGetSongs = debounce((value) => {
     //   client.getSongs(value).then(data => {
@@ -43,11 +45,12 @@ export default class Header extends React.Component {
   getPeople(){
     client.getUsers().then(people => {
       client.getUsersSongs(people, this.props.selection.songs);
-    });
+    })
   }
 
   componentDidMount(){
-    client.getCountries()
+    //client.getCountries();
+    //client.getCity();
   }
   login() {
     client.login();
@@ -72,6 +75,15 @@ export default class Header extends React.Component {
 
 
   }
+
+  Click(){
+        //console.log(client)
+      this.props.getCities();
+  }
+
+
+
+
   handleSearchChange(e){
     this.setState({
       value:e.target.value,
@@ -83,6 +95,7 @@ export default class Header extends React.Component {
     });
   }
   render() {
+
     return (
       <header className="header row">
         <form noValidate onSubmit={::this.handleSubmit}>
@@ -106,6 +119,9 @@ export default class Header extends React.Component {
             </SelectField>
           </div>
           <div className="button item">
+
+              <div onClick={::this.Click}>fsdfsdfsdf</div>
+
             <RaisedButton
               secondary={true}
               label="Поиск"

@@ -2,6 +2,7 @@
 import { addUser } from '../redux/modules/data';
 import { showDialog } from '../redux/modules/dialog';
 
+
 class ApiClient {
   constructor(dispatch) {
     this.dispatch = dispatch;
@@ -143,9 +144,9 @@ class ApiClient {
   }
 
 
-  getCountries(need_all=1) {
+    getCountries() {
     return new Promise((resolve, reject)=> {
-      VK.Api.call('database.getCountries', { need_all}, r => {
+      VK.Api.call('database.getCountries', {}, r => {
             if (r.error) {
               reject(r.error);
             } else {
@@ -159,6 +160,24 @@ class ApiClient {
     //VK.Api.call('users.search',
     // {sex:1, school_city:455, city:314,count:20} , r => console.log(r))
   }
+
+    getCity() {
+        return new Promise((resolve, reject)=> {
+            VK.Api.call('database.getCities', {country_id:2}, r => {
+                    if (r.error) {
+                        reject(r.error);
+                    } else {
+                        //console.log( r.response)
+
+                        resolve(r.response);
+                    }
+                }
+
+            );
+        });
+        //VK.Api.call('users.search',
+        // {sex:1, school_city:455, city:314,count:20} , r => console.log(r))
+    }
 
 }
 
