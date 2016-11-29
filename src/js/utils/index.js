@@ -1,5 +1,5 @@
 /* global VK */
-import { addUser } from '../redux/modules/data';
+import { addUser,startLoading,finishLoading, updateLoading } from '../redux/modules/data';
 import { showDialog } from '../redux/modules/dialog';
 
 class ApiClient {
@@ -62,6 +62,7 @@ class ApiClient {
   }
 
   getUsersSongs(users, selectedSongs) {
+    this.dispatch(startLoading(users.length));
     return new Promise((resolve, reject) => {
       const validUsers = [];
       const promises = users.map((user, i)=> {
@@ -70,12 +71,18 @@ class ApiClient {
           return new Promise((resolve, reject) => {
             const start = new Date().getTime();
             this.getSongsByOwnerId(user.uid).then((songs)=> {
+
+              this.dispatch(updateLoading(i));
+              if(i === users.length - 1){
+
+                this.dispatch(finishLoading());
+              }
               const end = new Date().getTime();
               const diff = end - start;
               console.log(diff);
               user.songs = songs;
               const matchedSongs = filterBySongs(songs, selectedSongs);
-              console.log(`User ${user.uid} - ${matchedSongs}`);
+              console.log(`User ${user.uid} - id:${i} of ${users.length}`);
               if (matchedSongs.length > 0) {
                 user.matchedSongs = matchedSongs;
                 validUsers.push(user);
@@ -83,8 +90,10 @@ class ApiClient {
               }
               //next && next();
               if (diff < 333) {
-                this.createTimeout(333 - diff ).then(resolve.bind(i))
-              }else{
+                this.createTimeout(333 - diff).then(()=>{
+                  resolve(i)
+                })
+              } else {
                 resolve(i);
               }
             });
@@ -96,7 +105,9 @@ class ApiClient {
 
 
       function recursive(i = 0) {
-        if (i !== promises.length - 1) {
+      //  console.log(promises.length);
+        //console.log(users, users.length);
+        if (i < promises.length ) {
           promises[i](i).then((id)=> {
             recursive(i + 1);
             console.log(i, id, new Date().getSeconds());
@@ -120,26 +131,50 @@ class ApiClient {
 
   }
 
-  getUsers(filters) {
+  getUsers(filters = {}) {
     return new Promise((resolve, reject)=> {
       VK.Api.call('users.search', {
-        sex: 1, /*school_city: 455, city: 314,*/ count: 200, fields: 'photo_200,' +
+        ...filters,
+        count:200,
+         fields: 'photo_200,' +
         ' photo,can_see_audio, has_photo, domain'
       }, r => {
         if (r.error) {
           reject(r.error);
         }
-
         const users = r.response.filter(user=>typeof user === 'object' && user.can_see_audio && user.has_photo);
-
         resolve(users);
-
-        // this.getUsersSongs(users).then((result)=> {
-        //   resolve(result);
-        // });
       },);
     });
     //VK.Api.call('users.search', {sex:1, school_city:455, city:314,count:20} , r => console.log(r))
+  }
+
+  getCities() {
+    return new Promise((resolve, reject)=> {
+      VK.Api.call('database.getCities', {
+        country_id: 2,
+      }, r => {
+        if (r.error) {
+          reject(r.error);
+        }
+        const cities = r.response.filter(user=>typeof user === 'object');
+        resolve(cities);
+      },);
+    });
+  }
+  getUniversities() {
+    return new Promise((resolve, reject)=> {
+      VK.Api.call('database.getUniversities', {
+        country_id: 2,
+        city_id: 314
+      }, r => {
+        if (r.error) {
+          reject(r.error);
+        }
+        const universities = r.response.filter(user=>typeof user === 'object');
+        resolve(universities);
+      },);
+    });
   }
 }
 

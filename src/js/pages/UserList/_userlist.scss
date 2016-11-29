@@ -1,3 +1,4 @@
+@import "../../../sass/mixin";
 .user-list{
   width:100%;
   display: flex;
@@ -7,4 +8,29 @@
    /// flex:1;
     padding:20px;
   }
+  .user{
+    .overlay{
+      @include abs;
+      pointer-events: none;
+      opacity:0;
+      background: transparentize(#fff, 0.25);
+      transition: opacity 0.3s;
+
+    }
+    &:hover{
+      .overlay{
+        opacity:1;
+      }
+    }
+    position: relative;
+    ul{
+      padding:10px;
+      li{
+        color:black;
+        padding:0 5px;
+
+      }
+    }
+  }
+
 }

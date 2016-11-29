@@ -1,0 +1,16 @@
+.songs-list{
+    li{
+      height:48px;
+      display: flex;
+      align-items: center;
+      position: relative;
+      .delete{
+        position: absolute;
+        right:0;
+        top:0;
+        bottom:0;
+        margin:auto 0;
+      }
+    }
+
+}

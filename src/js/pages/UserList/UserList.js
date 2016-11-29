@@ -12,7 +12,7 @@ export default class UserList extends React.Component {
   renderList() {
     return this.props.users.map((user, i) => {
       if(typeof user !== 'object') return;
-      return <div key={i}>
+      return <div key={i} className="user">
         <a target="_blank" href={`https://vk.com/${user.domain}`}>
         <div className="img-wr">
           <img src={user.photo_200 || user.photo} alt="" />
@@ -21,6 +21,15 @@ export default class UserList extends React.Component {
           {user.first_name} <br />
           {user.last_name}
         </p>
+          <div className="overlay">
+            <ul>
+              {user.matchedSongs.map((song, i )=> (
+                <li>
+                  <b>{song.artist}:</b> <span>{song.title}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
         </a>
       </div>
     });
