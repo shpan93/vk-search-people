@@ -135,7 +135,7 @@ class ApiClient {
     return new Promise((resolve, reject)=> {
       VK.Api.call('users.search', {
         ...filters,
-        count:200,
+        count:filters.count || 50,
          fields: 'photo_200,' +
         ' photo,can_see_audio, has_photo, domain'
       }, r => {

@@ -99,6 +99,12 @@ export default class Filters extends React.Component {
           onChange={(e)=>{
             this.props.setFilter('age_to',e.target.value);
         }}>
+        </TextField>
+        <TextField
+          floatingLabelText="Count"
+          onChange={(e)=>{
+            this.props.setFilter('count',e.target.value);
+        }}>
 
         </TextField>
       </Widget>

@@ -9,6 +9,7 @@ const initialState = {
   filters: {
     sex: 1,
     city: 314,
+    count:200
   },
   data: {
     universities: [],

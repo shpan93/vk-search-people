@@ -4,9 +4,9 @@ import {Root,UserList} from '../pages';
 
 export default(
 
-        <Route name="Root" path='/' component={Root}>
+        <Route name="Root" path='*' component={Root}>
             <IndexRoute name="MonthView"   component={UserList}/>
-            <Route path="*" component={(props)=>(<div>No match</div>)} />
+          {/*<Route path="*" component={(props)=>(<div>No match</div>)} />*/}
         </Route>
 
 );

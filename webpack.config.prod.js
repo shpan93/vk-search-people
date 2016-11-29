@@ -11,9 +11,9 @@ module.exports = {
     fs: "empty"
   },
   output: {
-    path: path.join(__dirname, 'public'),
+    path: path.join(__dirname, 'public/assets/js'),
     filename: 'bundle.js',
-    publicPath: '/assets/js/'
+    publicPath: 'assets/js/'
   },
 
   plugins: [

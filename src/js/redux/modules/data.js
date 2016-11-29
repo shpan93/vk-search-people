@@ -27,6 +27,7 @@ export default function reducer(state = initialState  , action) {
         case START_LOADING:
             return {
                 ...state,
+                users:[],
                 loading:true,
                 all:action.all,
             }
