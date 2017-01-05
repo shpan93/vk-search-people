@@ -11,7 +11,7 @@ import injectTapEventPlugin from 'react-tap-event-plugin';
 
 const {store, history} = configureStore(browserHistory);
 
-import '../sass/common.scss';
+import '../../public/assets/sass/common.scss';
 
 injectTapEventPlugin();
 render(
